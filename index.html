@@ -1,201 +1,182 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta name="description" content="Enrique Ruiz - Especialista en Automatizaciones Inteligentes y Diseño Web UI/UX. Transformamos tu negocio con soluciones tecnológicas avanzadas.">
-    <meta name="keywords" content="Automatización, Diseño Web, UI/UX, Inteligencia Artificial, Enrique Ruiz, Soluciones Digitales">
+    <meta name="description" content="Enrique Ruiz - Especialista en Automatizaciones con n8n/Make y Diseño Web UI/UX. Optimizo tu tiempo y escalo tu negocio.">
+    <meta name="keywords" content="Automatización, n8n, Make, Diseño Web, UI/UX, Inteligencia Artificial, Enrique Ruiz">
     <meta name="author" content="Enrique Ruiz">
-    <title>Enrique Ruiz - Automatizaciones &amp; Diseño Web</title>
-    <!-- Tailwind CSS v3 with Plugins -->
+    <title>Enrique Ruiz | Automatizaciones Inteligentes & Diseño Web</title>
+    
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- Favicon Placeholder -->
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-overlay { background: radial-gradient(circle at center, transparent 0%, #0a0a0a 100%); }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient 6s ease infinite;
+        }
+        .text-shadow-glow {
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+        }
+        .card-blur {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
 </head>
-<body class="bg-[#0a0a0a] text-gray-100 font-sans selection:bg-cyan-500 selection:text-white">
-<!-- BEGIN: MainHeader -->
-<header class="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 transition-all duration-300" data-purpose="site-navigation">
+<body class="bg-[#0a0a0a] text-gray-100 selection:bg-cyan-500 selection:text-white">
+
+<header class="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <div class="flex flex-col">
-            <span class="text-xl font-bold tracking-tight">Enrique Ruiz</span>
-            <span class="text-xs text-gray-400 uppercase tracking-widest">Automatizaciones &amp; Diseño Web</span>
+            <span class="text-xl font-black tracking-tighter uppercase italic">Enrique<span class="text-cyan-500">Ruiz</span></span>
+            <span class="text-[10px] text-gray-400 uppercase tracking-[0.2em] font-bold">Smart Automations</span>
         </div>
         <nav class="hidden md:flex items-center space-x-8">
-            <a class="text-sm font-medium hover:text-cyan-400 transition-colors" href="#home">Home</a>
-            <a class="text-sm font-medium hover:text-cyan-400 transition-colors" href="#servicios">Servicios</a>
-            <a class="text-sm font-medium hover:text-cyan-400 transition-colors" href="#resultados">Resultados</a>
-            <a class="text-sm font-medium hover:text-cyan-400 transition-colors" href="#proceso">Proceso</a>
-            <a class="text-sm font-medium hover:text-cyan-400 transition-colors" href="#contacto">Contacto</a>
-            <a class="px-5 py-2 rounded-lg border border-cyan-500/50 text-cyan-400 text-sm font-semibold hover:bg-cyan-500/10 transition-all" data-purpose="admin-button" href="#">Admin Login</a>
+            <a class="text-xs uppercase tracking-widest font-bold hover:text-cyan-400 transition-colors" href="#home">Home</a>
+            <a class="text-xs uppercase tracking-widest font-bold hover:text-cyan-400 transition-colors" href="#servicios">Servicios</a>
+            <a class="text-xs uppercase tracking-widest font-bold hover:text-cyan-400 transition-colors" href="#stack">Stack</a>
+            <a class="text-xs uppercase tracking-widest font-bold hover:text-cyan-400 transition-colors" href="#contacto">Contacto</a>
+            <a class="px-5 py-2 rounded-full bg-white text-black text-xs font-black uppercase hover:bg-cyan-500 transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)]" href="#contacto">Hablemos</a>
         </nav>
-        <!-- Mobile Menu Toggle (Simplified) -->
-        <button class="md:hidden text-gray-400">
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-            </svg>
-        </button>
+        <div class="md:hidden text-cyan-500">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
     </div>
 </header>
-<!-- END: MainHeader -->
+
 <main>
-    <!-- BEGIN: HeroSection -->
-    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden" data-purpose="hero-banner" id="home">
-        <!-- Background Image Layer -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden" id="home">
         <div class="absolute inset-0 z-0">
-            <img alt="Fondo de código" class="w-full h-full object-cover opacity-30" src="assets/images/hero-bg.jpg"/>
+            <img alt="Tecnología" class="w-full h-full object-cover opacity-20" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80"/>
             <div class="absolute inset-0 hero-overlay"></div>
         </div>
         <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-7xl font-extrabold leading-tight mb-6">
-                <span class="block">Transforma tu negocio con</span>
-                <span class="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent animate-gradient">
-                    automatizaciones inteligentes
+            <span class="inline-block px-4 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6 bg-cyan-500/5">Proyectos Abiertos 2026</span>
+            <h1 class="text-5xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter">
+                Diseño webs que <br>
+                <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent animate-gradient">
+                    trabajan por ti.
                 </span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Diseño web que convierte y automatizaciones que ahorran tiempo. Soluciones tecnológicas para hacer crecer tu negocio.
+            <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
+                Ayudo a empresas a escalar mediante el diseño de interfaces de alta conversión y la automatización de flujos de trabajo con <span class="text-white font-bold">n8n y Make</span>.
             </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-500 to-emerald-500 text-black font-bold rounded-xl hover:scale-105 transition-transform text-center" data-purpose="primary-cta" href="#contacto">
-                    Agendar Consultoría Gratuita
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a class="w-full sm:w-auto px-10 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 transition-all text-center uppercase tracking-tighter" href="#contacto">
+                    Empezar Proyecto
                 </a>
+                <a class="text-sm font-bold border-b-2 border-cyan-500 pb-1 hover:text-cyan-400 transition-all uppercase tracking-widest" href="#servicios">Mis Soluciones</a>
             </div>
         </div>
-        <!-- Decorative abstract element -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce text-gray-500">
-            <span class="text-xs uppercase tracking-widest mb-2">Scroll</span>
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-            </svg>
+    </section>
+
+    <section class="py-12 bg-white/5 border-y border-white/5" id="stack">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-10 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+            <span class="font-black text-xl md:text-2xl uppercase tracking-tighter">n8n.io</span>
+            <span class="font-black text-xl md:text-2xl uppercase tracking-tighter">Make.com</span>
+            <span class="font-black text-xl md:text-2xl uppercase tracking-tighter">Framer</span>
+            <span class="font-black text-xl md:text-2xl uppercase tracking-tighter">Tailwind</span>
+            <span class="font-black text-xl md:text-2xl uppercase tracking-tighter">OpenAI</span>
+            <span class="font-black text-xl md:text-2xl uppercase tracking-tighter">Docker</span>
         </div>
     </section>
-    <!-- END: HeroSection -->
-    <!-- BEGIN: ServicesSection -->
-    <section class="py-24 bg-[#0a0a0a]" data-purpose="services-overview" id="servicios">
+
+    <section class="py-32 bg-[#0a0a0a]" id="servicios">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">¿Que Hago?</h2>
-                <p class="text-gray-400 text-lg">Soluciones tecnológicas que impulsan tu negocio al siguiente nivel</p>
+            <div class="mb-24 text-center md:text-left">
+                <h2 class="text-5xl md:text-6xl font-black mb-6 uppercase tracking-tighter">Ingeniería <span class="text-cyan-500 text-shadow-glow">Digital</span></h2>
+                <p class="text-gray-400 text-xl font-light max-w-2xl">Elimino los cuellos de botella de tu negocio con sistemas automáticos y diseño de vanguardia.</p>
             </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1: Automatizaciones -->
-                <div class="group bg-[#111] border border-white/10 rounded-3xl overflow-hidden hover:border-cyan-500/50 transition-all flex flex-col h-full" data-purpose="service-card">
-                    <div class="h-56 relative overflow-hidden bg-[#161b22]">
-                        <img alt="Nodos de automatización" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="assets/images/automatizaciones.jpg"/>
-                        <div class="absolute top-4 left-4 p-2 bg-cyan-500/20 backdrop-blur rounded-lg">
-                            <svg class="h-6 w-6 text-cyan-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                            </svg>
-                        </div>
+                <div class="group p-10 card-blur rounded-[2.5rem] hover:border-cyan-500/40 transition-all duration-500">
+                    <div class="w-14 h-14 bg-cyan-500/10 rounded-2xl flex items-center justify-center text-cyan-500 mb-8 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-black transition-all">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </div>
-                    <div class="p-8 flex-grow">
-                        <h3 class="text-2xl font-bold mb-4">Automatizaciones Inteligentes</h3>
-                        <p class="text-gray-400 mb-6 leading-relaxed">
-                            Ahorra tiempo y dinero automatizando procesos repetitivos. Implemento soluciones que trabajan por ti 24/7.
-                        </p>
-                        <ul class="space-y-3 text-sm text-gray-300">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span> Reducción de costos</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span> Mayor eficiencia</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span> Menos errores humanos</li>
-                        </ul>
-                    </div>
+                    <h3 class="text-2xl font-bold mb-4 uppercase italic">Automatización</h3>
+                    <p class="text-gray-400 leading-relaxed font-light mb-6">Conexión total de herramientas (CRM, Email, Slack). Tus datos se mueven mientras tú descansas.</p>
+                    <ul class="text-xs space-y-2 text-cyan-500/70 font-bold uppercase tracking-widest">
+                        <li>• Flujos en n8n / Make</li>
+                        <li>• Integración de IA</li>
+                    </ul>
                 </div>
-                <!-- Card 2: Diseño Web -->
-                <div class="group bg-[#111] border border-white/10 rounded-3xl overflow-hidden hover:border-emerald-500/50 transition-all flex flex-col h-full" data-purpose="service-card">
-                    <div class="h-56 relative overflow-hidden bg-[#161b22]">
-                        <img alt="Laptop con diseño web" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="assets/images/diseno-web.jpg"/>
-                        <div class="absolute top-4 left-4 p-2 bg-emerald-500/20 backdrop-blur rounded-lg">
-                            <svg class="h-6 w-6 text-emerald-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.172-1.172a4 4 0 115.656 5.656L15 13.172V17" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                            </svg>
-                        </div>
+
+                <div class="group p-10 card-blur rounded-[2.5rem] hover:border-emerald-500/40 transition-all duration-500">
+                    <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-500 mb-8 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.172-1.172a4 4 0 115.656 5.656L15 13.172V17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </div>
-                    <div class="p-8 flex-grow">
-                        <h3 class="text-2xl font-bold mb-4">Diseño Web UI/UX</h3>
-                        <p class="text-gray-400 mb-6 leading-relaxed">
-                            Convierte visitantes en clientes con diseños web modernos, intuitivos y optimizados para conversión.
-                        </p>
-                        <ul class="space-y-3 text-sm text-gray-300">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Diseño responsive</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Experiencia optimizada</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Mayor conversión</li>
-                        </ul>
-                    </div>
+                    <h3 class="text-2xl font-bold mb-4 uppercase italic">Diseño Web UX</h3>
+                    <p class="text-gray-400 leading-relaxed font-light mb-6">Webs rápidas y minimalistas que guían al usuario hacia la compra de forma orgánica.</p>
+                    <ul class="text-xs space-y-2 text-emerald-500/70 font-bold uppercase tracking-widest">
+                        <li>• Tailwind & Framer</li>
+                        <li>• Alta Conversión</li>
+                    </ul>
                 </div>
-                <!-- Card 3: Integración -->
-                <div class="group bg-[#111] border border-white/10 rounded-3xl overflow-hidden hover:border-cyan-500/50 transition-all flex flex-col h-full" data-purpose="service-card">
-                    <div class="h-56 relative overflow-hidden bg-[#161b22]">
-                        <img alt="Bocetos de sistemas" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="assets/images/integracion.jpg"/>
-                        <div class="absolute top-4 left-4 p-2 bg-cyan-500/20 backdrop-blur rounded-lg">
-                            <svg class="h-6 w-6 text-cyan-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                            </svg>
-                        </div>
+
+                <div class="group p-10 card-blur rounded-[2.5rem] hover:border-blue-500/40 transition-all duration-500">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 mb-8 group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-black transition-all">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </div>
-                    <div class="p-8 flex-grow">
-                        <h3 class="text-2xl font-bold mb-4">Integración de Sistemas</h3>
-                        <p class="text-gray-400 mb-6 leading-relaxed">
-                            Conecta todas tus herramientas y plataformas para que trabajen en armonía. Sin silos de información.
-                        </p>
-                        <ul class="space-y-3 text-sm text-gray-300">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span> Datos centralizados</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span> Flujos automatizados</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span> Sincronización en tiempo real</li>
-                        </ul>
-                    </div>
+                    <h3 class="text-2xl font-bold mb-4 uppercase italic">Sistemas Cloud</h3>
+                    <p class="text-gray-400 leading-relaxed font-light mb-6">Infraestructura robusta en VPS propios para máxima velocidad y control total de tus datos.</p>
+                    <ul class="text-xs space-y-2 text-blue-500/70 font-bold uppercase tracking-widest">
+                        <li>• Docker & Easypanel</li>
+                        <li>• Seguridad SSL</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
-    <!-- END: ServicesSection -->
-    <!-- BEGIN: ContactSection -->
-    <section class="py-24 bg-[#0a0a0a] border-t border-white/5" data-purpose="contact-form-section" id="contacto">
+
+    <section class="py-32 bg-[#0a0a0a]" id="contacto">
         <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">¿Listo para escalar?</h2>
-                <p class="text-gray-400">Hablemos sobre cómo la tecnología puede transformar tus resultados actuales.</p>
-            </div>
-            <div class="bg-[#111] p-8 md:p-12 rounded-[2.5rem] border border-white/10" data-purpose="form-container">
-                <form class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="flex flex-col gap-2">
-                        <label class="text-sm font-semibold text-gray-300 px-1" for="nombre">Nombre Completo</label>
-                        <input class="w-full bg-black border-gray-800 rounded-xl py-4 px-6 text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all" id="nombre" placeholder="Tu nombre" type="text" required/>
+            <div class="bg-gradient-to-br from-[#111] to-black p-10 md:p-20 rounded-[3rem] border border-white/10 text-center shadow-2xl">
+                <h2 class="text-4xl md:text-7xl font-black mb-8 uppercase tracking-tighter italic leading-none">¿Escalamos tu <br><span class="text-cyan-500">negocio?</span></h2>
+                <p class="text-gray-500 mb-12 font-light">Cuéntame qué proceso te quita el sueño y yo lo automatizo.</p>
+                <form class="grid grid-cols-1 gap-6 text-left">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input class="w-full bg-white/5 border-white/10 rounded-2xl py-5 px-8 text-white focus:border-cyan-500 focus:ring-0 transition-all" placeholder="Nombre" type="text" required/>
+                        <input class="w-full bg-white/5 border-white/10 rounded-2xl py-5 px-8 text-white focus:border-cyan-500 focus:ring-0 transition-all" placeholder="Email" type="email" required/>
                     </div>
-                    <div class="flex flex-col gap-2">
-                        <label class="text-sm font-semibold text-gray-300 px-1" for="email">Correo Electrónico</label>
-                        <input class="w-full bg-black border-gray-800 rounded-xl py-4 px-6 text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all" id="email" placeholder="tu@email.com" type="email" required/>
-                    </div>
-                    <div class="md:col-span-2 flex flex-col gap-2">
-                        <label class="text-sm font-semibold text-gray-300 px-1" for="mensaje">¿En qué puedo ayudarte?</label>
-                        <textarea class="w-full bg-black border-gray-800 rounded-xl py-4 px-6 text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all" id="mensaje" placeholder="Cuéntame sobre tu proyecto o necesidad de automatización" rows="4" required></textarea>
-                    </div>
-                    <div class="md:col-span-2">
-                        <button class="w-full py-5 bg-gradient-to-r from-cyan-400 to-emerald-400 text-black font-black text-lg rounded-2xl hover:brightness-110 active:scale-[0.98] transition-all uppercase tracking-tight" data-purpose="submit-button" type="submit">
-                            Agendar mi Consultoría Rápida
-                        </button>
-                    </div>
+                    <textarea class="w-full bg-white/5 border-white/10 rounded-3xl py-5 px-8 text-white focus:border-cyan-500 focus:ring-0 transition-all" placeholder="¿Qué necesitas automatizar?" rows="4" required></textarea>
+                    <button class="w-full py-6 bg-cyan-500 text-black font-black text-xl rounded-[2rem] hover:bg-white hover:scale-[1.02] active:scale-95 transition-all uppercase italic tracking-tighter" type="submit">
+                        Enviar Propuesta
+                    </button>
                 </form>
             </div>
         </div>
     </section>
-    <!-- END: ContactSection -->
 </main>
-<!-- BEGIN: MainFooter -->
-<footer class="py-12 bg-[#050505] border-t border-white/5" data-purpose="site-footer">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-        <div class="text-center md:text-left">
-            <h4 class="text-lg font-bold">Enrique Ruiz</h4>
-            <p class="text-sm text-gray-500">© 2023 Soluciones Digitales Avanzadas. Todos los derechos reservados.</p>
+
+<footer class="py-20 bg-black border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12">
+        <div class="flex flex-col items-center md:items-start text-center md:text-left">
+            <span class="text-2xl font-black uppercase italic tracking-tighter text-white">Enrique<span class="text-cyan-500 font-light">Ruiz</span></span>
+            <p class="text-[10px] text-gray-600 mt-4 font-bold uppercase tracking-[0.3em] leading-loose">
+                © 2026 Enrique Ruiz - .Cloud Infrastructure <br> 
+                Powered by n8n & Docker
+            </p>
         </div>
-        <div class="flex items-center space-x-8 text-sm font-medium text-gray-400">
-            <a class="hover:text-white transition-colors" href="#">LinkedIn</a>
-            <a class="hover:text-white transition-colors" href="#">GitHub</a>
-            <a class="hover:text-white transition-colors" href="#">Twitter</a>
+        <div class="flex items-center space-x-12 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
+            <a class="hover:text-cyan-500 transition-colors" href="https://github.com/enriquerm2" target="_blank">GitHub</a>
+            <a class="hover:text-cyan-500 transition-colors" href="#" target="_blank">LinkedIn</a>
+            <a class="hover:text-cyan-500 transition-colors" href="#" target="_blank">Twitter</a>
         </div>
     </div>
 </footer>
-<!-- END: MainFooter -->
-<script src="js/script.js"></script>
+
 </body>
 </html>
