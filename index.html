@@ -183,7 +183,7 @@ document.querySelector('form').addEventListener('submit', async (e) => {
 
     try {
         // REEMPLAZA ESTA URL POR TU URL DE WEBHOOK DE N8N
-        const response = await fetch('https://1-n8n.yygbqt.easypanel.host/webhook-test/contacto-web', {
+        const response = await fetch('https://1-n8n.yygbqt.easypanel.host/webhook/contacto-web', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
