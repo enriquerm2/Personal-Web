@@ -1,22 +1,27 @@
 # ETAPA 1: Compilación
 FROM node:18-alpine AS build
 WORKDIR /app
+
+# 1. Copiamos tus archivos de GitHub
 COPY . .
 
-# 1. Iniciamos proyecto e instalamos Tailwind
+# 2. LA BALA DE PLATA: Borramos cualquier rastro de instalaciones previas que vengan de GitHub
+RUN rm -rf node_modules package.json package-lock.json
+
+# 3. Instalación fresca y 100% compatible con Linux
 RUN npm init -y
 RUN npm install tailwindcss
 
-# 2. Creamos la configuración ESPECÍFICA (Ignorando node_modules)
+# 4. Creamos la configuración específica
 RUN echo "module.exports = { content: ['./index.html', './js/**/*.js'], theme: { extend: {} }, plugins: [] }" > tailwind.config.js
 
-# 3. Creamos las directivas de entrada
+# 5. Creamos las directivas de entrada
 RUN printf "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n" > input.css
 RUN if [ -f css/styles.css ]; then cat css/styles.css >> input.css; fi
 
-# 4. COMPILAMOS (Ahora tardará 2 segundos porque no lee node_modules)
+# 6. COMPILAMOS (Ahora npx funcionará perfecto porque todo es nuevo)
 RUN mkdir -p dist
-RUN ./node_modules/.bin/tailwindcss -i input.css -o dist/styles.css --minify
+RUN npx tailwindcss -i input.css -o dist/styles.css --minify
 
 # ETAPA 2: Nginx
 FROM nginx:alpine
