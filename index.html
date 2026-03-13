@@ -4,11 +4,12 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta name="description" content="Enrique Ruiz - Especialista en Automatizaciones con n8n/Make y Diseño Web UI/UX. Optimizo tu tiempo y escalo tu negocio.">
-    <meta name="keywords" content="Automatización, n8n, Make, Diseño Web, UI/UX, Inteligencia Artificial, Enrique Ruiz">
     <meta name="author" content="Enrique Ruiz">
     <title>Enrique Ruiz | Automatizaciones Inteligentes & Diseño Web</title>
     
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preload" as="image" href="assets/images/hero-bg.jpg" fetchpriority="high">
+
+    <link rel="stylesheet" href="css/styles.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     
@@ -51,16 +52,17 @@
             <a class="text-xs uppercase tracking-widest font-bold hover:text-cyan-400 transition-colors" href="#contacto">Contacto</a>
             <a class="px-5 py-2 rounded-full bg-white text-black text-xs font-black uppercase hover:bg-cyan-500 transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)]" href="#contacto">Hablemos</a>
         </nav>
-        <div class="md:hidden text-cyan-500">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        </div>
     </div>
 </header>
 
 <main>
     <section class="relative min-h-screen flex items-center pt-20 overflow-hidden" id="home">
         <div class="absolute inset-0 z-0">
-            <img alt="Tecnología" class="w-full h-full object-cover opacity-20" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80"/>
+            <img alt="Tecnología" 
+                 class="w-full h-full object-cover opacity-20" 
+                 src="assets/images/hero-bg.jpg" 
+                 fetchpriority="high"
+                 decoding="async">
             <div class="absolute inset-0 hero-overlay"></div>
         </div>
         <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
@@ -97,7 +99,7 @@
     <section class="py-32 bg-[#0a0a0a]" id="servicios">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-24 text-center md:text-left">
-                <h2 class="text-5xl md:text-6xl font-black mb-6 uppercase tracking-tighter">Ingeniería <span class="text-cyan-500 text-shadow-glow">Digital</span></h2>
+                <h2 class="text-5xl md:text-6xl font-black mb-6 uppercase tracking-tighter text-white">Ingeniería <span class="text-cyan-500 text-shadow-glow">Digital</span></h2>
                 <p class="text-gray-400 text-xl font-light max-w-2xl">Elimino los cuellos de botella de tu negocio con sistemas automáticos y diseño de vanguardia.</p>
             </div>
             
@@ -108,10 +110,6 @@
                     </div>
                     <h3 class="text-2xl font-bold mb-4 uppercase italic">Automatización</h3>
                     <p class="text-gray-400 leading-relaxed font-light mb-6">Conexión total de herramientas (CRM, Email, Slack). Tus datos se mueven mientras tú descansas.</p>
-                    <ul class="text-xs space-y-2 text-cyan-500/70 font-bold uppercase tracking-widest">
-                        <li>• Flujos en n8n / Make</li>
-                        <li>• Integración de IA</li>
-                    </ul>
                 </div>
 
                 <div class="group p-10 card-blur rounded-[2.5rem] hover:border-emerald-500/40 transition-all duration-500">
@@ -120,10 +118,6 @@
                     </div>
                     <h3 class="text-2xl font-bold mb-4 uppercase italic">Diseño Web UX</h3>
                     <p class="text-gray-400 leading-relaxed font-light mb-6">Webs rápidas y minimalistas que guían al usuario hacia la compra de forma orgánica.</p>
-                    <ul class="text-xs space-y-2 text-emerald-500/70 font-bold uppercase tracking-widest">
-                        <li>• Tailwind & Framer</li>
-                        <li>• Alta Conversión</li>
-                    </ul>
                 </div>
 
                 <div class="group p-10 card-blur rounded-[2.5rem] hover:border-blue-500/40 transition-all duration-500">
@@ -132,10 +126,6 @@
                     </div>
                     <h3 class="text-2xl font-bold mb-4 uppercase italic">Sistemas Cloud</h3>
                     <p class="text-gray-400 leading-relaxed font-light mb-6">Infraestructura robusta en VPS propios para máxima velocidad y control total de tus datos.</p>
-                    <ul class="text-xs space-y-2 text-blue-500/70 font-bold uppercase tracking-widest">
-                        <li>• Docker & Easypanel</li>
-                        <li>• Seguridad SSL</li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -144,8 +134,7 @@
     <section class="py-32 bg-[#0a0a0a]" id="contacto">
         <div class="max-w-4xl mx-auto px-6">
             <div class="bg-gradient-to-br from-[#111] to-black p-10 md:p-20 rounded-[3rem] border border-white/10 text-center shadow-2xl">
-                <h2 class="text-4xl md:text-7xl font-black mb-8 uppercase tracking-tighter italic leading-none">¿Escalamos tu <br><span class="text-cyan-500">negocio?</span></h2>
-                <p class="text-gray-500 mb-12 font-light">Cuéntame qué proceso te quita el sueño y yo lo automatizo.</p>
+                <h2 class="text-4xl md:text-7xl font-black mb-8 uppercase tracking-tighter italic leading-none text-white">¿Escalamos tu <br><span class="text-cyan-500">negocio?</span></h2>
                 <form class="grid grid-cols-1 gap-6 text-left">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <input class="w-full bg-white/5 border-white/10 rounded-2xl py-5 px-8 text-white focus:border-cyan-500 focus:ring-0 transition-all" placeholder="Nombre" type="text" required/>
@@ -172,8 +161,6 @@
         </div>
         <div class="flex items-center space-x-12 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
             <a class="hover:text-cyan-500 transition-colors" href="https://github.com/enriquerm2" target="_blank">GitHub</a>
-            <a class="hover:text-cyan-500 transition-colors" href="#" target="_blank">LinkedIn</a>
-            <a class="hover:text-cyan-500 transition-colors" href="#" target="_blank">Twitter</a>
         </div>
     </div>
 </footer>
