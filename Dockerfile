@@ -3,18 +3,18 @@ FROM node:18-alpine AS build
 WORKDIR /app
 COPY . .
 
-# 1. Iniciamos proyecto e instalamos Tailwind de forma LOCAL
+# 1. Iniciamos proyecto e instalamos Tailwind
 RUN npm init -y
 RUN npm install tailwindcss
 
-# 2. Creamos la configuración
-RUN echo "module.exports = { content: ['./**/*.html', './**/*.js'], theme: { extend: {} }, plugins: [] }" > tailwind.config.js
+# 2. Creamos la configuración ESPECÍFICA (Ignorando node_modules)
+RUN echo "module.exports = { content: ['./index.html', './js/**/*.js'], theme: { extend: {} }, plugins: [] }" > tailwind.config.js
 
 # 3. Creamos las directivas de entrada
 RUN printf "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n" > input.css
 RUN if [ -f css/styles.css ]; then cat css/styles.css >> input.css; fi
 
-# 4. COMPILAMOS (Usando la ruta absoluta al binario. ¡Esto es infalible!)
+# 4. COMPILAMOS (Ahora tardará 2 segundos porque no lee node_modules)
 RUN mkdir -p dist
 RUN ./node_modules/.bin/tailwindcss -i input.css -o dist/styles.css --minify
 
