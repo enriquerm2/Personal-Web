@@ -1,26 +1,25 @@
 # ETAPA 1: Compilación
 FROM node:18-alpine AS build
 WORKDIR /app
+
+# 1. Instalamos Tailwind de forma GLOBAL (esto elimina el error de npx para siempre)
+RUN npm install -g tailwindcss
+
+# 2. Copiamos tus archivos
 COPY . .
-
-# 1. Iniciamos un proyecto Node oficial (silencioso para evitar errores)
-RUN npm init -y
-
-# 2. Instalamos Tailwind
-RUN npm install tailwindcss
 
 # 3. Creamos la configuración de forma segura
 RUN echo "module.exports = { content: ['./**/*.html', './**/*.js'], theme: { extend: {} }, plugins: [] }" > tailwind.config.js
 
-# 4. Usamos printf (que sí funciona en Alpine) para crear las directivas de Tailwind
+# 4. Creamos las directivas de Tailwind
 RUN printf "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n" > input.css
 
-# 5. Si tenías estilos propios, los sumamos al archivo (sin fallar si no existen)
+# 5. Sumamos estilos propios si existen
 RUN if [ -f css/styles.css ]; then cat css/styles.css >> input.css; fi
 
-# 6. Creamos la carpeta de salida y compilamos
+# 6. Creamos la carpeta de salida y compilamos usando el comando GLOBAL (sin npx)
 RUN mkdir -p dist
-RUN npx tailwindcss -i input.css -o dist/styles.css --minify
+RUN tailwindcss -i input.css -o dist/styles.css --minify
 
 # ETAPA 2: Nginx
 FROM nginx:alpine
