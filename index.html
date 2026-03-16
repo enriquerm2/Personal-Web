@@ -111,25 +111,26 @@
 <script>
 async function cargarProyectos() {
     try {
-        // Buscamos el archivo que genera n8n
         const respuesta = await fetch('proyectos.json');
-        const datos = await respuesta.json();
+        const datos = await respuesta.json(); // Esto ahora es directamente tu lista
+        
         const contenedor = document.getElementById('projects-container');
-        contenedor.innerHTML = ''; // Limpiamos el mensaje de carga
+        contenedor.innerHTML = ''; 
 
-        datos.projects.forEach(proyecto => {
+        // IMPORTANTE: 'datos' ya es el array, no necesitamos '.projects'
+        datos.forEach(proyecto => {
             const card = `
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="${proyecto.Imagen}" alt="${proyecto.Título}">
+                        <img src="${proyecto.Imagen || 'https://via.placeholder.com/400x200'}" alt="${proyecto.Titulo}">
                         <div class="tech-tags">
-                            ${proyecto.Tags.split(',').map(tag => `<span>${tag.trim()}</span>`).join('')}
+                            ${proyecto.Tags ? proyecto.Tags.split(',').map(tag => `<span>${tag.trim()}</span>`).join('') : ''}
                         </div>
                     </div>
                     <div class="project-info">
-                        <h3>${proyecto.Título}</h3>
+                        <h3>${proyecto.Titulo}</h3>
                         <p>${proyecto.Descripción}</p>
-                        <a href="${proyecto.Link}" target="_blank" class="project-link">Ver Proyecto →</a>
+                        <a href="${proyecto.Link || '#'}" target="_blank" class="project-link">Ver Proyecto →</a>
                     </div>
                 </div>
             `;
@@ -137,11 +138,10 @@ async function cargarProyectos() {
         });
     } catch (error) {
         console.error('Error cargando proyectos:', error);
-        document.getElementById('projects-container').innerHTML = '<p>Error al cargar los proyectos.</p>';
+        document.getElementById('projects-container').innerHTML = '<p>Error al cargar los proyectos. Revisa la consola (F12).</p>';
     }
 }
 
-// Ejecutar al cargar la página
 cargarProyectos();
 </script>
     
