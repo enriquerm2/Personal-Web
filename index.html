@@ -99,7 +99,52 @@
             </div>
         </div>
     </section>
+    <section id="portfolio" class="portfolio-section">
+    <div class="container">
+        <h2 class="section-title">Proyectos Reales</h2>
+        <div id="projects-container" class="projects-grid">
+            <p>Cargando proyectos...</p>
+        </div>
+    </div>
+</section>
 
+<script>
+async function cargarProyectos() {
+    try {
+        // Buscamos el archivo que genera n8n
+        const respuesta = await fetch('proyectos.json');
+        const datos = await respuesta.json();
+        const contenedor = document.getElementById('projects-container');
+        contenedor.innerHTML = ''; // Limpiamos el mensaje de carga
+
+        datos.projects.forEach(proyecto => {
+            const card = `
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="${proyecto.Imagen}" alt="${proyecto.Título}">
+                        <div class="tech-tags">
+                            ${proyecto.Tags.split(',').map(tag => `<span>${tag.trim()}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>${proyecto.Título}</h3>
+                        <p>${proyecto.Descripción}</p>
+                        <a href="${proyecto.Link}" target="_blank" class="project-link">Ver Proyecto →</a>
+                    </div>
+                </div>
+            `;
+            contenedor.innerHTML += card;
+        });
+    } catch (error) {
+        console.error('Error cargando proyectos:', error);
+        document.getElementById('projects-container').innerHTML = '<p>Error al cargar los proyectos.</p>';
+    }
+}
+
+// Ejecutar al cargar la página
+cargarProyectos();
+</script>
+    
     <section class="py-12 bg-white/5 border-y border-white/5" id="stack">
         <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-10 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
             <span class="font-black text-xl md:text-2xl uppercase tracking-tighter">n8n.io</span>
