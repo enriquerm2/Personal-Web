@@ -111,25 +111,30 @@
 <script>
 async function cargarProyectos() {
     try {
+        // Buscamos el archivo que genera n8n
         const respuesta = await fetch('proyectos.json');
         const datos = await respuesta.json(); // Esto ahora es directamente tu lista
-        
         const contenedor = document.getElementById('projects-container');
-        contenedor.innerHTML = ''; 
+        contenedor.innerHTML = ''; // Limpiamos el mensaje de carga
+
+        if (!datos || datos.length === 0) {
+            contenedor.innerHTML = '<p>No hay proyectos cargados por el momento.</p>';
+            return;
+        }
 
         // IMPORTANTE: 'datos' ya es el array, no necesitamos '.projects'
         datos.forEach(proyecto => {
             const card = `
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="${proyecto.Imagen || 'https://via.placeholder.com/400x200'}" alt="${proyecto.Titulo}">
+                        <img src="${proyecto.Imagen || 'https://via.placeholder.com/400x200'}" alt="${proyecto.Titulo || 'Proyecto'}">
                         <div class="tech-tags">
                             ${proyecto.Tags ? proyecto.Tags.split(',').map(tag => `<span>${tag.trim()}</span>`).join('') : ''}
                         </div>
                     </div>
                     <div class="project-info">
-                        <h3>${proyecto.Titulo}</h3>
-                        <p>${proyecto.Descripción}</p>
+                        <h3>${proyecto.Titulo || 'Sin Título'}</h3>
+                        <p>${proyecto.Descripción || 'Sin descripción.'}</p>
                         <a href="${proyecto.Link || '#'}" target="_blank" class="project-link">Ver Proyecto →</a>
                     </div>
                 </div>
@@ -142,6 +147,7 @@ async function cargarProyectos() {
     }
 }
 
+// Ejecutar al cargar la página
 cargarProyectos();
 </script>
  <section id="portfolio" class="portfolio-section">
