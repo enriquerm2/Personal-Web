@@ -55,8 +55,6 @@
             transform: translateY(-10px);
             border-color: rgba(6, 182, 212, 0.4);
         }
-        .project-image { position: relative; height: 200px; }
-        .project-image img { width: 100%; height: 100%; object-fit: cover; }
         
         .tech-tag {
             background: rgba(6, 182, 212, 0.1);
@@ -87,7 +85,7 @@
 </header>
 
 <main>
-    <section id="home" class="relative h-[200vh] bg-black">
+    <section id="home" class="relative h-[300vh] bg-black">
         <div class="sticky top-0 left-0 w-full h-screen overflow-hidden">
             <video 
                 id="v0" 
@@ -104,7 +102,7 @@
             <div class="absolute inset-0 flex items-center justify-center hero-overlay">
                 <div id="hero-text" class="relative z-10 max-w-5xl mx-auto px-6 text-center transition-opacity duration-300">
                     <span class="inline-block px-4 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6 bg-cyan-500/5">Proyectos Abiertos 2026</span>
-                    <h1 class="text-5xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter text-white">
+                    <h1 class="text-5xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter text-white text-shadow-glow">
                         Diseño webs que <br>
                         <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent animate-gradient">trabajan por ti.</span>
                     </h1>
@@ -196,7 +194,6 @@
 async function cargarProyectos() {
     try {
         const res = await fetch('proyectos.json?v=' + Date.now());
-        if (!res.ok) throw new Error('No se encontró proyectos.json');
         const datos = await res.json();
         const contenedor = document.getElementById('projects-container');
         contenedor.innerHTML = '';
@@ -218,13 +215,10 @@ async function cargarProyectos() {
                     </div>
                 </article>`;
         });
-    } catch (e) { 
-        console.error("Error capturado:", e);
-        document.getElementById('projects-container').innerHTML = '<p class="text-red-500/50 italic">Error de lectura de datos.</p>'; 
-    }
+    } catch (e) { console.error(e); }
 }
 
-// 2. VIDEO SCROLL DINÁMICO (Optimizado para más movimiento)
+// 2. VIDEO SCROLL DINÁMICO (Ajustado para 8 segundos y 300vh)
 const video = document.getElementById('v0');
 const heroSection = document.getElementById('home');
 const heroText = document.getElementById('hero-text');
@@ -234,15 +228,13 @@ function updateVideo() {
         const scrollY = window.scrollY;
         const sectionTop = heroSection.offsetTop;
         const sectionHeight = heroSection.offsetHeight - window.innerHeight;
-        
-        // Calculamos el progreso
         let progress = (scrollY - sectionTop) / sectionHeight;
         progress = Math.max(0, Math.min(progress, 1));
         
-        // Asignamos tiempo al video
+        // Sincronización del tiempo del video
         video.currentTime = video.duration * progress;
         
-        // Opacidad del texto (desaparece a mitad del scroll)
+        // El texto desaparece suavemente al bajar
         const textOpacity = 1 - (progress * 2.5);
         heroText.style.opacity = Math.max(0, textOpacity);
     }
