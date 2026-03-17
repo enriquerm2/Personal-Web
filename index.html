@@ -8,7 +8,6 @@
     <title>Enrique Ruiz | Automatizaciones Inteligentes & Diseño Web</title>
     
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
-    <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -70,9 +69,7 @@
             
             <div class="absolute inset-0 bg-cover bg-center md:hidden opacity-50" style="background-image: url('assets/images/hero-bg.jpg');"></div>
             
-            <video id="v0" preload="auto" muted playsinline class="hidden md:block absolute inset-0 w-full h-full object-cover opacity-50">
-                <source type="video/mp4" src="https://res.cloudinary.com/daxiisa8w/video/upload/v1773751766/Hero-Scroll_1_vvtz8d.mp4">
-            </video>
+            <video id="v0" preload="auto" muted playsinline class="hidden md:block absolute inset-0 w-full h-full object-cover opacity-50"></video>
             
             <div class="absolute inset-0 flex items-center justify-center hero-overlay">
                 <div id="hero-text" class="relative z-10 max-w-5xl mx-auto px-6 text-center">
@@ -143,14 +140,16 @@
         <div class="max-w-4xl mx-auto px-6">
             <div class="bg-gradient-to-br from-[#111] to-black p-10 md:p-20 rounded-[3rem] border border-white/10 text-center shadow-2xl">
                 <h2 class="text-4xl md:text-7xl font-black mb-8 uppercase tracking-tighter italic text-white">¿Escalamos tu <br><span class="text-cyan-500">negocio?</span></h2>
+                
                 <form id="contact-form" class="grid grid-cols-1 gap-6 text-left">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <input class="w-full bg-white/5 border-white/10 rounded-2xl py-5 px-8 text-white focus:border-cyan-500 outline-none" placeholder="Nombre" type="text" required/>
-                        <input class="w-full bg-white/5 border-white/10 rounded-2xl py-5 px-8 text-white focus:border-cyan-500 outline-none" placeholder="Email" type="email" required/>
+                        <input id="nombre" class="w-full bg-white/5 border-white/10 rounded-2xl py-5 px-8 text-white focus:border-cyan-500 outline-none" placeholder="Nombre" type="text" required/>
+                        <input id="email" class="w-full bg-white/5 border-white/10 rounded-2xl py-5 px-8 text-white focus:border-cyan-500 outline-none" placeholder="Email" type="email" required/>
                     </div>
-                    <textarea class="w-full bg-white/5 border-white/10 rounded-3xl py-5 px-8 text-white focus:border-cyan-500 outline-none" placeholder="¿Qué necesitas automatizar?" rows="4" required></textarea>
-                    <button class="w-full py-6 bg-cyan-500 text-black font-black text-xl rounded-[2rem] hover:bg-white transition-all uppercase italic" type="submit">Enviar Propuesta</button>
+                    <textarea id="mensaje" class="w-full bg-white/5 border-white/10 rounded-3xl py-5 px-8 text-white focus:border-cyan-500 outline-none" placeholder="¿Qué necesitas automatizar?" rows="4" required></textarea>
+                    <button id="btn-enviar" class="w-full py-6 bg-cyan-500 text-black font-black text-xl rounded-[2rem] hover:bg-white transition-all uppercase italic" type="submit">Enviar Propuesta</button>
                 </form>
+
             </div>
         </div>
     </section>
@@ -166,7 +165,7 @@
 </footer>
 
 <script>
-// 1. CARGA DE PROYECTOS
+// 1. CARGA DE PROYECTOS DESDE EXCEL/JSON
 async function cargarProyectos() {
     try {
         const res = await fetch('proyectos.json?v=' + Date.now());
@@ -197,48 +196,106 @@ async function cargarProyectos() {
     } catch (e) { console.error("Error en proyectos:", e); }
 }
 
-// 2. VIDEO SCROLL SINCRONIZADO (El original que funcionaba)
+// 2. VIDEO SCROLL CON PRECARGA EN RAM (FLUIDEZ MÁXIMA)
 const video = document.getElementById('v0');
 const heroSection = document.getElementById('home');
 const heroText = document.getElementById('hero-text');
+
+// 🔥 ¡PON AQUÍ TU ENLACE DE CLOUDINARY! 🔥
+const videoUrl = 'https://res.cloudinary.com/daxiisa8w/video/upload/v1773751766/Hero-Scroll_1_vvtz8d.mp4'; 
 
 let targetTime = 0;
 let actualTime = 0;
 
 function updateVideoSmooth() {
-    // Verificamos que sea escritorio y el vídeo esté cargado
-    if (window.innerWidth >= 768 && video && video.duration) {
+    if (window.innerWidth >= 768 && video.duration) {
         const rect = heroSection.getBoundingClientRect();
         let progress = -rect.top / (rect.height - window.innerHeight);
         progress = Math.max(0, Math.min(progress, 1));
         
         targetTime = video.duration * progress;
-        actualTime += (targetTime - actualTime) * 0.12; 
+        actualTime += (targetTime - actualTime) * 0.15; 
         video.currentTime = actualTime;
 
         const textOpacity = 1 - (progress * 2); 
         heroText.style.opacity = Math.max(0, textOpacity);
         heroText.style.transform = `translateY(-${progress * 80}px)`;
     } else if (window.innerWidth < 768) {
-        // En móvil nos aseguramos de que el texto esté visible siempre
         heroText.style.opacity = 1;
         heroText.style.transform = 'none';
     }
     requestAnimationFrame(updateVideoSmooth);
 }
 
-// Arrancar el script cuando el vídeo avisa de que tiene datos
-if (video) {
-    video.addEventListener('loadedmetadata', () => {
-        requestAnimationFrame(updateVideoSmooth);
-    });
-    // Por si el vídeo ya estaba cargado en caché y se saltó el evento
-    if (video.readyState >= 1) {
-        requestAnimationFrame(updateVideoSmooth);
+async function precargarVideoEnRAM() {
+    try {
+        if (window.innerWidth < 768) return; 
+        const respuesta = await fetch(videoUrl);
+        const blob = await respuesta.blob();
+        const urlLocal = URL.createObjectURL(blob);
+        video.src = urlLocal;
+        video.onloadedmetadata = () => requestAnimationFrame(updateVideoSmooth);
+    } catch (error) {
+        video.src = videoUrl;
+        video.onloadedmetadata = () => requestAnimationFrame(updateVideoSmooth);
     }
 }
 
+// 3. ENVÍO DEL FORMULARIO A N8N
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault(); 
+
+    const btn = document.getElementById('btn-enviar');
+    const textoOriginal = btn.innerText;
+    
+    btn.innerText = 'Enviando...';
+    btn.disabled = true;
+    btn.classList.add('opacity-70', 'cursor-not-allowed');
+
+    const datos = {
+        nombre: document.getElementById('nombre').value,
+        email: document.getElementById('email').value,
+        mensaje: document.getElementById('mensaje').value
+    };
+
+    try {
+        // 🔥 ¡PON AQUÍ TU WEBHOOK DE N8N! 🔥
+        const webhookUrl = 'https://1-n8n.yygbqt.easypanel.host/webhook/contacto-web';
+
+        const respuesta = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(datos)
+        });
+
+        if (respuesta.ok) {
+            btn.innerText = '¡Propuesta Enviada! 🚀';
+            btn.classList.replace('bg-cyan-500', 'bg-emerald-500');
+            btn.classList.replace('text-black', 'text-white');
+            document.getElementById('contact-form').reset();
+        } else {
+            throw new Error('Error en el servidor');
+        }
+    } catch (error) {
+        console.error('Error al enviar:', error);
+        btn.innerText = 'Error al enviar. Intenta de nuevo.';
+        btn.classList.replace('bg-cyan-500', 'bg-red-500');
+    } finally {
+        setTimeout(() => {
+            if (btn.innerText.includes('Error')) {
+                btn.innerText = textoOriginal;
+                btn.disabled = false;
+                btn.classList.remove('opacity-70', 'cursor-not-allowed', 'bg-red-500');
+                btn.classList.add('bg-cyan-500');
+            }
+        }, 3000);
+    }
+});
+
+// Arrancar funciones
 cargarProyectos();
+precargarVideoEnRAM();
+
 </script>
 
 </body>
