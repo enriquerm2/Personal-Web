@@ -3,10 +3,17 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta name="description" content="Enrique Ruiz - Especialista en Automatizaciones con n8n/Make y Diseño Web UI/UX.">
-    <meta name="author" content="Enrique Ruiz">
-    <title>Enrique Ruiz | Automatizaciones Inteligentes & Diseño Web</title>
     
+    <title>Enrique Ruiz | Automatizaciones Inteligentes & Diseño Web</title>
+    <meta name="description" content="Diseño de sistemas autónomos con n8n y webs de alta conversión para escalar negocios.">
+    <meta name="author" content="Enrique Ruiz">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://enriqueruiz.cloud/">
+    <meta property="og:title" content="Enrique Ruiz | Smart Automations">
+    <meta property="og:description" content="Potencia tu negocio con flujos n8n y diseño web profesional.">
+    <meta property="og:image" content="https://enriqueruiz.cloud/assets/images/og-share.jpg">
+
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,16 +31,18 @@
             background-size: 200% 200%;
             animation: gradient 6s ease infinite;
         }
-        .text-shadow-glow {
-            text-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
-        }
+        .text-shadow-glow { text-shadow: 0 0 30px rgba(6, 182, 212, 0.4); }
         .card-blur {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        /* Punto 4: Mejora de interacción en tarjetas */
+        .project-card:hover {
+            border-color: rgba(34, 211, 238, 0.4);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
         }
         .tech-tag {
             background: rgba(6, 182, 212, 0.1);
@@ -52,7 +61,7 @@
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <div class="flex flex-col">
             <span class="text-xl font-black tracking-tighter uppercase italic">Enrique<span class="text-cyan-500">Ruiz</span></span>
-            <span class="text-[10px] text-gray-400 uppercase tracking-[0.2em] font-bold">Smart Automations</span>
+            <span class="text-[10px] text-gray-400 uppercase tracking-[0.2em] font-bold">Cloud Infrastructure</span>
         </div>
         <nav class="hidden md:flex items-center space-x-8">
             <a class="text-xs uppercase tracking-widest font-bold hover:text-cyan-400 transition-colors" href="#home">Home</a>
@@ -64,25 +73,23 @@
 </header>
 
 <main>
-    <section id="home" class="relative h-screen md:h-[300vh] bg-black">
+    <section id="home" class="relative h-screen md:h-[400vh] bg-black">
         <div class="sticky top-0 left-0 w-full h-screen overflow-hidden">
-            
             <div class="absolute inset-0 bg-cover bg-center md:hidden opacity-50" style="background-image: url('assets/images/hero-bg.jpg');"></div>
-            
             <video id="v0" preload="auto" muted playsinline class="hidden md:block absolute inset-0 w-full h-full object-cover opacity-50"></video>
             
             <div class="absolute inset-0 flex items-center justify-center hero-overlay">
                 <div id="hero-text" class="relative z-10 max-w-5xl mx-auto px-6 text-center">
-                    <span class="inline-block px-4 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6 bg-cyan-500/5">Proyectos Abiertos 2026</span>
+                    <span class="inline-block px-4 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6 bg-cyan-500/5">Open for projects 2026</span>
                     <h1 class="text-5xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter text-white">
-                        Diseño webs que <br>
-                        <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent animate-gradient">trabajan por ti.</span>
+                        Webs de alto impacto <br>
+                        <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent animate-gradient">que trabajan por ti.</span>
                     </h1>
-                    <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
-                        Ayudo a empresas a escalar mediante el diseño de interfaces de alta conversión y la automatización con <span class="text-white font-bold">n8n y Make</span>.
+                    <p class="text-lg md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
+                        Diseño interfaces premium y conecto tu negocio con <span class="text-white font-bold">automatizaciones inteligentes en n8n</span> para eliminar tareas manuales.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-                        <a class="w-full sm:w-auto px-10 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 transition-all text-center uppercase tracking-tighter" href="#contacto">Empezar Proyecto</a>
+                        <a class="w-full sm:w-auto px-10 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 transition-all text-center uppercase tracking-tighter" href="#contacto">Iniciar Consultoría</a>
                         <a class="text-sm font-bold border-b-2 border-cyan-500 pb-1 hover:text-cyan-400 transition-all uppercase tracking-widest text-white" href="#portfolio">Ver Portfolio</a>
                     </div>
                 </div>
@@ -93,8 +100,8 @@
     <section id="portfolio" class="py-32 bg-[#0a0a0a] relative z-20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-16">
-                <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">Soluciones <span class="text-cyan-500 text-shadow-glow">Desplegadas</span></h2>
-                <p class="text-gray-400 mt-4 font-light">Proyectos reales gestionados dinámicamente desde n8n.</p>
+                <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">Proyectos <span class="text-cyan-500 text-shadow-glow">Destacados</span></h2>
+                <p class="text-gray-400 mt-4 font-light text-lg">Soluciones reales implementadas con arquitectura Cloud y No-Code.</p>
             </div>
             <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 </div>
@@ -103,34 +110,28 @@
 
     <section class="py-32 bg-[#0a0a0a]" id="servicios">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-24 text-center md:text-left">
-                <h2 class="text-5xl md:text-6xl font-black mb-6 uppercase tracking-tighter text-white text-shadow-glow">Ingeniería <span class="text-cyan-500">Digital</span></h2>
-                <p class="text-gray-400 text-xl font-light max-w-2xl">Elimino los cuellos de botella de tu negocio con sistemas automáticos.</p>
-            </div>
-
+            <h2 class="text-5xl md:text-6xl font-black mb-16 uppercase tracking-tighter text-white text-shadow-glow">Servicios <span class="text-cyan-500">Expertos</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group p-10 card-blur rounded-[2.5rem] hover:border-cyan-500/40 transition-all duration-500">
+                <div class="group p-10 card-blur rounded-[2.5rem]">
                     <div class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-500 mb-6 group-hover:bg-cyan-500 group-hover:text-black transition-all">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 uppercase italic text-white">Automatización</h3>
-                    <p class="text-gray-400 leading-relaxed font-light">Conexión total de herramientas (CRM, Email, Slack). Tus datos se mueven mientras tú descansas.</p>
+                    <h3 class="text-2xl font-bold mb-4 uppercase italic text-white">Ecosistemas n8n</h3>
+                    <p class="text-gray-400 leading-relaxed font-light">Diseño de flujos de trabajo que conectan tus herramientas favoritas para que el negocio funcione en piloto automático.</p>
                 </div>
-
-                <div class="group p-10 card-blur rounded-[2.5rem] hover:border-emerald-500/40 transition-all duration-500">
+                <div class="group p-10 card-blur rounded-[2.5rem]">
                     <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-500 mb-6 group-hover:bg-emerald-500 group-hover:text-black transition-all">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.172-1.172a4 4 0 115.656 5.656L15 13.172V17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 uppercase italic text-white">Diseño Web UX</h3>
-                    <p class="text-gray-400 leading-relaxed font-light">Webs rápidas y minimalistas que guían al usuario hacia la compra de forma orgánica.</p>
+                    <h3 class="text-2xl font-bold mb-4 uppercase italic text-white">UI/UX Premium</h3>
+                    <p class="text-gray-400 leading-relaxed font-light">Interfaces modernas, rápidas y minimalistas enfocadas en convertir visitantes en clientes de alto valor.</p>
                 </div>
-
-                <div class="group p-10 card-blur rounded-[2.5rem] hover:border-blue-500/40 transition-all duration-500">
+                <div class="group p-10 card-blur rounded-[2.5rem]">
                     <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-500 mb-6 group-hover:bg-blue-500 group-hover:text-black transition-all">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 uppercase italic text-white">Sistemas Cloud</h3>
-                    <p class="text-gray-400 leading-relaxed font-light">Infraestructura robusta en VPS propios para máxima velocidad y control total.</p>
+                    <h3 class="text-2xl font-bold mb-4 uppercase italic text-white">Easypanel Cloud</h3>
+                    <p class="text-gray-400 leading-relaxed font-light">Despliegue y mantenimiento de infraestructura propia en VPS para control total de tus datos y velocidad máxima.</p>
                 </div>
             </div>
         </div>
@@ -138,164 +139,121 @@
 
     <section class="py-32 bg-[#0a0a0a]" id="contacto">
         <div class="max-w-4xl mx-auto px-6">
-            <div class="bg-gradient-to-br from-[#111] to-black p-10 md:p-20 rounded-[3rem] border border-white/10 text-center shadow-2xl">
-                <h2 class="text-4xl md:text-7xl font-black mb-8 uppercase tracking-tighter italic text-white">¿Escalamos tu <br><span class="text-cyan-500">negocio?</span></h2>
-                
+            <div class="bg-gradient-to-br from-[#111] to-black p-10 md:p-20 rounded-[3rem] border border-white/10 text-center">
+                <h2 class="text-4xl md:text-7xl font-black mb-8 uppercase tracking-tighter italic text-white text-shadow-glow">¿Trabajamos <br><span class="text-cyan-500">juntos?</span></h2>
                 <form id="contact-form" class="grid grid-cols-1 gap-6 text-left">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <input id="nombre" class="w-full bg-white/5 border-white/10 rounded-2xl py-5 px-8 text-white focus:border-cyan-500 outline-none" placeholder="Nombre" type="text" required/>
                         <input id="email" class="w-full bg-white/5 border-white/10 rounded-2xl py-5 px-8 text-white focus:border-cyan-500 outline-none" placeholder="Email" type="email" required/>
                     </div>
-                    <textarea id="mensaje" class="w-full bg-white/5 border-white/10 rounded-3xl py-5 px-8 text-white focus:border-cyan-500 outline-none" placeholder="¿Qué necesitas automatizar?" rows="4" required></textarea>
+                    <textarea id="mensaje" class="w-full bg-white/5 border-white/10 rounded-3xl py-5 px-8 text-white focus:border-cyan-500 outline-none" placeholder="Cuéntame sobre tu proyecto..." rows="4" required></textarea>
                     <button id="btn-enviar" class="w-full py-6 bg-cyan-500 text-black font-black text-xl rounded-[2rem] hover:bg-white transition-all uppercase italic" type="submit">Enviar Propuesta</button>
                 </form>
-
             </div>
         </div>
     </section>
 </main>
 
 <footer class="py-20 bg-black border-t border-white/5">
-    <div class="max-w-7xl mx-auto px-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
-        <div>
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="text-center md:text-left">
             <span class="text-2xl font-black uppercase italic tracking-tighter text-white">Enrique<span class="text-cyan-500">Ruiz</span></span>
-            <p class="text-[10px] text-gray-600 mt-2 font-bold uppercase tracking-[0.3em]">© 2026 Enrique Ruiz - .Cloud Infrastructure</p>
+            <p class="text-[10px] text-gray-500 mt-2 font-bold uppercase tracking-[0.3em]">Smart Automation & Web Engineering</p>
+        </div>
+        <div class="flex items-center space-x-6">
+            <a href="https://github.com/tu-usuario" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/tu-usuario" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
         </div>
     </div>
 </footer>
 
 <script>
-// 1. CARGA DE PROYECTOS DESDE EXCEL/JSON
+// JS 1: PROYECTOS (Punto 4: Tarjeta entera clickable)
 async function cargarProyectos() {
     try {
         const res = await fetch('proyectos.json?v=' + Date.now());
-        if (!res.ok) throw new Error('No se encontró proyectos.json');
         const datos = await res.json();
         const contenedor = document.getElementById('projects-container');
-        contenedor.innerHTML = '';
-
-        datos.forEach(p => {
-            let tagsHtml = '';
-            if (p.Tags) {
-                tagsHtml = String(p.Tags).split(',').map(t => `<span class="tech-tag">${t.trim()}</span>`).join('');
-            }
-
-            contenedor.innerHTML += `
-                <article class="bg-[#111] rounded-[24px] overflow-hidden border border-white/5 hover:border-cyan-500/40 transition-all group">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="${p.Imagen || ''}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                        <div class="absolute top-3 left-3 flex gap-1 flex-wrap">${tagsHtml}</div>
+        contenedor.innerHTML = datos.map(p => `
+            <article onclick="window.open('${p.Link || '#'}', '_blank')" class="project-card card-blur rounded-[24px] overflow-hidden cursor-pointer group">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="${p.Imagen || ''}" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-3 left-3 flex gap-1 flex-wrap">
+                        ${p.Tags ? String(p.Tags).split(',').map(t => `<span class="tech-tag">${t.trim()}</span>`).join('') : ''}
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-white mb-2 uppercase tracking-tight">${p.Titulo || ''}</h3>
-                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">${p.Descripción || ''}</p>
-                        <a href="${p.Link || '#'}" target="_blank" class="text-cyan-400 text-xs font-black uppercase tracking-widest hover:text-white transition-colors">Ver Proyecto →</a>
-                    </div>
-                </article>`;
-        });
-    } catch (e) { console.error("Error en proyectos:", e); }
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-white mb-2 uppercase tracking-tight">${p.Titulo || ''}</h3>
+                    <p class="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">${p.Descripción || ''}</p>
+                    <span class="text-cyan-400 text-xs font-black uppercase tracking-widest group-hover:text-white transition-colors">Explorar →</span>
+                </div>
+            </article>`).join('');
+    } catch (e) { console.error(e); }
 }
 
-// 2. VIDEO SCROLL CON PRECARGA EN RAM (FLUIDEZ MÁXIMA)
+// JS 2: VIDEO SCROLL
 const video = document.getElementById('v0');
-const heroSection = document.getElementById('home');
-const heroText = document.getElementById('hero-text');
-
-// 🔥 ¡PON AQUÍ TU ENLACE DE CLOUDINARY! 🔥
+const hero = document.getElementById('home');
+const text = document.getElementById('hero-text');
 const videoUrl = 'https://res.cloudinary.com/daxiisa8w/video/upload/v1773751766/Hero-Scroll_1_vvtz8d.mp4'; 
 
-let targetTime = 0;
 let actualTime = 0;
-
 function updateVideoSmooth() {
     if (window.innerWidth >= 768 && video.duration) {
-        const rect = heroSection.getBoundingClientRect();
+        const rect = hero.getBoundingClientRect();
         let progress = -rect.top / (rect.height - window.innerHeight);
         progress = Math.max(0, Math.min(progress, 1));
-        
-        targetTime = video.duration * progress;
-        actualTime += (targetTime - actualTime) * 0.15; 
+        actualTime += (video.duration * progress - actualTime) * 0.15; 
         video.currentTime = actualTime;
-
-        const textOpacity = 1 - (progress * 2); 
-        heroText.style.opacity = Math.max(0, textOpacity);
-        heroText.style.transform = `translateY(-${progress * 80}px)`;
-    } else if (window.innerWidth < 768) {
-        heroText.style.opacity = 1;
-        heroText.style.transform = 'none';
+        text.style.opacity = Math.max(0, 1 - (progress * 2.5));
+        text.style.transform = `translateY(-${progress * 80}px)`;
     }
     requestAnimationFrame(updateVideoSmooth);
 }
 
-async function precargarVideoEnRAM() {
+async function precargarVideo() {
     try {
         if (window.innerWidth < 768) return; 
-        const respuesta = await fetch(videoUrl);
-        const blob = await respuesta.blob();
-        const urlLocal = URL.createObjectURL(blob);
-        video.src = urlLocal;
+        const res = await fetch(videoUrl);
+        const blob = await res.blob();
+        video.src = URL.createObjectURL(blob);
         video.onloadedmetadata = () => requestAnimationFrame(updateVideoSmooth);
-    } catch (error) {
-        video.src = videoUrl;
-        video.onloadedmetadata = () => requestAnimationFrame(updateVideoSmooth);
-    }
+    } catch (e) { video.src = videoUrl; requestAnimationFrame(updateVideoSmooth); }
 }
 
-// 3. ENVÍO DEL FORMULARIO A N8N
+// JS 3: N8N CONTACT
 document.getElementById('contact-form').addEventListener('submit', async function(e) {
-    e.preventDefault(); 
-
+    e.preventDefault();
     const btn = document.getElementById('btn-enviar');
-    const textoOriginal = btn.innerText;
+    const webhookUrl = 'https://1-n8n.yygbqt.easypanel.host/webhook/contacto-web';
     
     btn.innerText = 'Enviando...';
     btn.disabled = true;
-    btn.classList.add('opacity-70', 'cursor-not-allowed');
-
-    const datos = {
-        nombre: document.getElementById('nombre').value,
-        email: document.getElementById('email').value,
-        mensaje: document.getElementById('mensaje').value
-    };
 
     try {
-        // 🔥 ¡PON AQUÍ TU WEBHOOK DE N8N! 🔥
-        const webhookUrl = 'https://1-n8n.yygbqt.easypanel.host/webhook/contacto-web';
-
-        const respuesta = await fetch(webhookUrl, {
+        const res = await fetch(webhookUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(datos)
+            body: JSON.stringify({
+                nombre: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                mensaje: document.getElementById('mensaje').value
+            })
         });
-
-        if (respuesta.ok) {
-            btn.innerText = '¡Propuesta Enviada! 🚀';
-            btn.classList.replace('bg-cyan-500', 'bg-emerald-500');
-            btn.classList.replace('text-black', 'text-white');
+        if (res.ok) {
+            btn.innerText = '¡Enviado con éxito! 🚀';
+            btn.style.backgroundColor = '#10b981';
             document.getElementById('contact-form').reset();
-        } else {
-            throw new Error('Error en el servidor');
         }
-    } catch (error) {
-        console.error('Error al enviar:', error);
-        btn.innerText = 'Error al enviar. Intenta de nuevo.';
-        btn.classList.replace('bg-cyan-500', 'bg-red-500');
-    } finally {
-        setTimeout(() => {
-            if (btn.innerText.includes('Error')) {
-                btn.innerText = textoOriginal;
-                btn.disabled = false;
-                btn.classList.remove('opacity-70', 'cursor-not-allowed', 'bg-red-500');
-                btn.classList.add('bg-cyan-500');
-            }
-        }, 3000);
-    }
+    } catch (e) { btn.innerText = 'Error al enviar'; btn.style.backgroundColor = '#ef4444'; }
 });
 
-// Arrancar funciones
 cargarProyectos();
-precargarVideoEnRAM();
-
+precargarVideo();
 </script>
 
 </body>
