@@ -13,8 +13,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; }
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; }
         .hero-overlay { background: radial-gradient(circle at center, transparent 0%, #0a0a0a 100%); }
+        
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -37,7 +38,7 @@
         }
 
         /* --- ESTILOS PORTFOLIO --- */
-        .portfolio-section { padding: 80px 0; }
+        .portfolio-section { padding: 80px 0; background-color: #0a0a0a; }
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -65,6 +66,11 @@
             font-size: 10px;
             font-weight: 700;
         }
+
+        /* Suavizado de reproducción de video */
+        #v0 {
+            transition: opacity 0.5s ease;
+        }
     </style>
 </head>
 
@@ -86,23 +92,35 @@
 </header>
 
 <main>
-    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden" id="home">
-        <div class="absolute inset-0 z-0">
-            <img alt="Tecnología" class="w-full h-full object-cover opacity-20" src="assets/images/hero-bg.jpg">
-            <div class="absolute inset-0 hero-overlay"></div>
-        </div>
-        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
-            <span class="inline-block px-4 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6 bg-cyan-500/5">Proyectos Abiertos 2026</span>
-            <h1 class="text-5xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter">
-                Diseño webs que <br>
-                <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent animate-gradient">trabajan por ti.</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
-                Ayudo a empresas a escalar mediante el diseño de interfaces de alta conversión y la automatización con <span class="text-white font-bold">n8n y Make</span>.
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <a class="w-full sm:w-auto px-10 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 transition-all text-center uppercase tracking-tighter" href="#contacto">Empezar Proyecto</a>
-                <a class="text-sm font-bold border-b-2 border-cyan-500 pb-1 hover:text-cyan-400 transition-all uppercase tracking-widest" href="#portfolio">Ver Portfolio</a>
+    <section id="home" class="relative h-[400vh] bg-black">
+        <div class="sticky top-0 left-0 w-full h-screen overflow-hidden">
+            <video 
+                id="v0" 
+                tabindex="0" 
+                autobuffer="autobuffer" 
+                preload="auto" 
+                class="w-full h-full object-cover opacity-40"
+                muted
+                playsinline
+            >
+                <source type="video/mp4" src="assets/videos/hero-scroll.mp4">
+            </video>
+            
+            <div class="absolute inset-0 flex items-center justify-center hero-overlay">
+                <div id="hero-text" class="relative z-10 max-w-5xl mx-auto px-6 text-center transition-opacity duration-500">
+                    <span class="inline-block px-4 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6 bg-cyan-500/5">Proyectos Abiertos 2026</span>
+                    <h1 class="text-5xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter text-white">
+                        Diseño webs que <br>
+                        <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent animate-gradient">trabajan por ti.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
+                        Ayudo a empresas a escalar mediante el diseño de interfaces de alta conversión y la automatización con <span class="text-white font-bold">n8n y Make</span>.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pointer-events-auto">
+                        <a class="w-full sm:w-auto px-10 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 transition-all text-center uppercase tracking-tighter" href="#contacto">Empezar Proyecto</a>
+                        <a class="text-sm font-bold border-b-2 border-cyan-500 pb-1 hover:text-cyan-400 transition-all uppercase tracking-widest text-white" href="#portfolio">Ver Portfolio</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -132,7 +150,7 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 uppercase italic text-white">Automatización</h3>
-                    <p class="text-gray-400 leading-relaxed font-light">Conexión total de herramientas (CRM, Email, Slack). Tus datos se mueven mientras tú descansas.</p>
+                    <p class="text-gray-400 leading-relaxed font-light">Conexión total de herramientas. Tus datos se mueven mientras tú descansas.</p>
                 </div>
 
                 <div class="group p-10 card-blur rounded-[2.5rem] hover:border-emerald-500/40 transition-all duration-500">
@@ -140,7 +158,7 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.172-1.172a4 4 0 115.656 5.656L15 13.172V17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 uppercase italic text-white">Diseño Web UX</h3>
-                    <p class="text-gray-400 leading-relaxed font-light">Webs rápidas y minimalistas que guían al usuario hacia la compra de forma orgánica.</p>
+                    <p class="text-gray-400 leading-relaxed font-light">Webs rápidas y minimalistas que guían al usuario hacia la compra.</p>
                 </div>
 
                 <div class="group p-10 card-blur rounded-[2.5rem] hover:border-blue-500/40 transition-all duration-500">
@@ -148,13 +166,13 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 uppercase italic text-white">Sistemas Cloud</h3>
-                    <p class="text-gray-400 leading-relaxed font-light">Infraestructura robusta en VPS propios para máxima velocidad y control total.</p>
+                    <p class="text-gray-400 leading-relaxed font-light">Infraestructura robusta para máxima velocidad y control total de tus datos.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-32" id="contacto">
+    <section class="py-32 bg-[#0a0a0a]" id="contacto">
         <div class="max-w-4xl mx-auto px-6">
             <div class="bg-gradient-to-br from-[#111] to-black p-10 md:p-20 rounded-[3rem] border border-white/10 text-center shadow-2xl">
                 <h2 class="text-4xl md:text-7xl font-black mb-8 uppercase tracking-tighter italic text-white">¿Escalamos tu <br><span class="text-cyan-500">negocio?</span></h2>
@@ -179,6 +197,7 @@
 </footer>
 
 <script>
+// 1. CARGA DE PROYECTOS (ESTABLE)
 async function cargarProyectos() {
     try {
         const res = await fetch('proyectos.json?v=' + Date.now());
@@ -186,11 +205,6 @@ async function cargarProyectos() {
         const datos = await res.json();
         const contenedor = document.getElementById('projects-container');
         contenedor.innerHTML = '';
-
-        if (!datos || datos.length === 0) {
-            contenedor.innerHTML = '<p class="text-gray-500">No hay proyectos disponibles hoy.</p>';
-            return;
-        }
 
         datos.forEach(p => {
             let tagsHtml = '';
@@ -216,7 +230,33 @@ async function cargarProyectos() {
         document.getElementById('projects-container').innerHTML = '<p class="text-red-500/50 italic">Error de lectura de datos.</p>'; 
     }
 }
+
+// 2. VIDEO SCROLL DINÁMICO
+const video = document.getElementById('v0');
+const heroSection = document.getElementById('home');
+const heroText = document.getElementById('hero-text');
+
+function updateVideo() {
+    if (video.duration) {
+        const scrollY = window.scrollY;
+        const sectionTop = heroSection.offsetTop;
+        const sectionHeight = heroSection.offsetHeight - window.innerHeight;
+        const progress = Math.max(0, Math.min((scrollY - sectionTop) / sectionHeight, 1));
+        
+        // Controlamos el tiempo del video
+        video.currentTime = video.duration * progress;
+        
+        // Efecto opacidad texto (opcional: el texto se desvanece al bajar)
+        const textOpacity = 1 - (progress * 2);
+        heroText.style.opacity = Math.max(0, textOpacity);
+    }
+    requestAnimationFrame(updateVideo);
+}
+
+// Inicialización
+requestAnimationFrame(updateVideo);
 cargarProyectos();
 </script>
+
 </body>
 </html>
