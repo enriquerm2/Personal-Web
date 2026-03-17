@@ -10,10 +10,9 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; margin: 0; overflow-x: hidden; }
         
-        /* Contenedor principal del Hero */
         #home { background-color: #000; }
 
-        /* El video: centrado y por debajo de todo el texto */
+        /* Estilos del Video para PC */
         #v0 { 
             position: absolute;
             top: 50%; left: 50%;
@@ -26,7 +25,6 @@
             display: block;
         }
 
-        /* Capa de degradado para que el texto se lea bien */
         .hero-overlay { 
             position: absolute;
             inset: 0;
@@ -34,10 +32,15 @@
             z-index: 5; 
         }
 
-        /* Texto por encima de todo */
         #hero-content-wrapper { 
             position: relative;
             z-index: 10; 
+        }
+
+        .card-blur {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .tech-tag {
@@ -47,12 +50,6 @@
             border-radius: 99px;
             font-size: 10px;
             font-weight: 700;
-        }
-
-        .card-blur {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
@@ -78,17 +75,16 @@
     <section id="home" class="relative h-screen md:h-[400vh]">
         <div class="sticky top-0 w-full h-screen overflow-hidden">
             
-            <video id="v0" preload="auto" muted playsinline loop autoplay style="display: block;">
-    <source src="assets/videos/hero-scroll.mp4" type="video/mp4">
-    Tu navegador no soporta el formato de video.
-</video>
+            <video id="v0" preload="auto" muted playsinline autoplay loop class="hidden md:block">
+                <source src="assets/videos/hero-scroll.mp4" type="video/mp4">
+            </video>
             
-            <div class="absolute inset-0 bg-cover bg-center md:hidden" style="background-image: url('assets/images/hero-bg.jpg');"></div>
+            <div class="absolute inset-0 bg-cover bg-center md:hidden" style="background-image: url('assets/images/hero-bg.jpg'); z-index: 2;"></div>
             
             <div class="hero-overlay flex items-center justify-center">
                 <div id="hero-content-wrapper" class="max-w-5xl mx-auto px-6 text-center">
                     <span class="inline-block px-4 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6 bg-cyan-500/5">Proyectos Abiertos 2026</span>
-                    <h1 id="hero-title" class="text-5xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter text-white">
+                    <h1 class="text-5xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter text-white">
                         Diseño webs que <br>
                         <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent">trabajan por ti.</span>
                     </h1>
@@ -163,7 +159,7 @@
 </footer>
 
 <script>
-// 1. PROYECTOS
+// 1. CARGA DE PROYECTOS
 async function cargarProyectos() {
     try {
         const res = await fetch('proyectos.json?v=' + Date.now());
@@ -186,44 +182,38 @@ async function cargarProyectos() {
     } catch (e) { console.error("Error cargando proyectos:", e); }
 }
 
-// 2. VIDEO SCROLL DINÁMICO
+// 2. LÓGICA DEL VIDEO SCROLL
 const video = document.getElementById('v0');
 const hero = document.getElementById('home');
 const content = document.getElementById('hero-content-wrapper');
 
 function syncVideo() {
+    // Solo en escritorio
     if (window.innerWidth >= 768 && video.duration) {
         const rect = hero.getBoundingClientRect();
         const scrollMax = rect.height - window.innerHeight;
         let progress = -rect.top / scrollMax;
         progress = Math.max(0, Math.min(progress, 1));
 
-        // Sincronización directa
         video.currentTime = video.duration * progress;
-
-        // Efectos de texto
         content.style.opacity = 1 - (progress * 2.5);
         content.style.transform = `translateY(${-progress * 100}px)`;
     }
     requestAnimationFrame(syncVideo);
 }
 
-// "WAKE UP" DEL VIDEO: Forzamos al navegador a cargar el primer frame
-function initVideo() {
+window.onload = () => {
+    cargarProyectos();
     if (window.innerWidth >= 768) {
+        // Despierta el vídeo
         video.play().then(() => {
-            video.pause(); // Lo arrancamos y paramos para que cargue en memoria
+            video.pause();
             requestAnimationFrame(syncVideo);
-        }).catch(err => {
-            console.log("Esperando interacción para el video...");
+        }).catch(e => {
+            console.log("Esperando interacción...", e);
             requestAnimationFrame(syncVideo);
         });
     }
-}
-
-window.onload = () => {
-    cargarProyectos();
-    initVideo();
 };
 </script>
 
