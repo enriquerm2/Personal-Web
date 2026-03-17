@@ -3,21 +3,44 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Enrique Ruiz | Automatizaciones & Diseño Web</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Enrique Ruiz - Especialista en Automatizaciones con n8n/Make y Diseño Web UI/UX.">
+    <meta name="author" content="Enrique Ruiz">
+    <title>Enrique Ruiz | Automatizaciones Inteligentes & Diseño Web</title>
+    
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; margin: 0; overflow-x: hidden; }
         .hero-overlay { background: radial-gradient(circle at center, transparent 10%, #0a0a0a 100%); }
-        .text-shadow-glow { text-shadow: 0 0 30px rgba(6, 182, 212, 0.6); }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient 6s ease infinite;
+        }
+        .text-shadow-glow {
+            text-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
+        }
+        .card-blur {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
         
         #v0 { 
             will-change: transform; 
             filter: brightness(0.5);
             object-fit: cover;
-            /* Evita que el vídeo desaparezca en algunos móviles */
-            display: block; 
         }
 
         .tech-tag {
@@ -28,9 +51,6 @@
             font-size: 10px;
             font-weight: 700;
         }
-
-        /* Animación suave para el texto */
-        #hero-text { transition: opacity 0.1s linear; }
     </style>
 </head>
 
@@ -52,19 +72,10 @@
 </header>
 
 <main>
-    <section id="home" class="relative h-[250vh] md:h-[500vh] bg-black">
-        <div class="sticky top-0 left-0 w-full h-screen overflow-hidden">
-            <video 
-                id="v0" 
-                preload="auto" 
-                muted 
-                playsinline 
-                webkit-playsinline
-                autoplay 
-                loop
-                poster="assets/images/hero-bg.jpg"
-                class="w-full h-full object-cover"
-            >
+    <section id="home" class="relative h-screen md:h-[400vh] bg-black">
+        <div class="sticky top-0 left-0 w-full h-screen overflow-hidden bg-cover bg-center" style="background-image: url('assets/images/hero-bg.jpg');">
+            
+            <video id="v0" preload="auto" class="hidden md:block w-full h-full object-cover" muted playsinline>
                 <source type="video/mp4" src="assets/videos/hero-scroll.mp4">
             </video>
             
@@ -73,13 +84,13 @@
                     <span class="inline-block px-4 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6 bg-cyan-500/5">Proyectos Abiertos 2026</span>
                     <h1 class="text-5xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter text-white">
                         Diseño webs que <br>
-                        <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent">trabajan por ti.</span>
+                        <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent animate-gradient">trabajan por ti.</span>
                     </h1>
                     <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
-                        Automatizaciones inteligentes con <span class="text-white font-bold">n8n</span> para escalar tu negocio.
+                        Ayudo a empresas a escalar mediante el diseño de interfaces de alta conversión y la automatización con <span class="text-white font-bold">n8n y Make</span>.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-                        <a class="px-10 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 transition-all text-center uppercase tracking-tighter" href="#contacto">Empezar Proyecto</a>
+                        <a class="w-full sm:w-auto px-10 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 transition-all text-center uppercase tracking-tighter" href="#contacto">Empezar Proyecto</a>
                         <a class="text-sm font-bold border-b-2 border-cyan-500 pb-1 hover:text-cyan-400 transition-all uppercase tracking-widest text-white" href="#portfolio">Ver Portfolio</a>
                     </div>
                 </div>
@@ -87,7 +98,7 @@
         </div>
     </section>
 
-    <section id="portfolio" class="py-24 bg-[#0a0a0a] relative z-20">
+    <section id="portfolio" class="py-32 bg-[#0a0a0a] relative z-20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-16">
                 <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">Soluciones <span class="text-cyan-500 text-shadow-glow">Desplegadas</span></h2>
@@ -99,29 +110,35 @@
     </section>
 
     <section class="py-32 bg-[#0a0a0a]" id="servicios">
-        <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
-            <h2 class="text-5xl md:text-6xl font-black mb-16 uppercase tracking-tighter text-white text-shadow-glow">Ingeniería <span class="text-cyan-500">Digital</span></h2>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-24 text-center md:text-left">
+                <h2 class="text-5xl md:text-6xl font-black mb-6 uppercase tracking-tighter text-white text-shadow-glow">Ingeniería <span class="text-cyan-500">Digital</span></h2>
+                <p class="text-gray-400 text-xl font-light max-w-2xl">Elimino los cuellos de botella de tu negocio con sistemas automáticos.</p>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group p-10 card-blur rounded-[2.5rem] hover:border-cyan-500/40 transition-all">
-                    <div class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-500 mb-6 group-hover:bg-cyan-500 group-hover:text-black transition-all mx-auto md:mx-0">
+                <div class="group p-10 card-blur rounded-[2.5rem] hover:border-cyan-500/40 transition-all duration-500">
+                    <div class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-500 mb-6 group-hover:bg-cyan-500 group-hover:text-black transition-all">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 uppercase italic text-white">Automatización</h3>
-                    <p class="text-gray-400 font-light">Conexión total de herramientas. Tus datos se mueven mientras tú descansas.</p>
+                    <p class="text-gray-400 leading-relaxed font-light">Conexión total de herramientas (CRM, Email, Slack). Tus datos se mueven mientras tú descansas.</p>
                 </div>
-                <div class="group p-10 card-blur rounded-[2.5rem] hover:border-emerald-500/40 transition-all">
-                    <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-500 mb-6 group-hover:bg-emerald-500 group-hover:text-black transition-all mx-auto md:mx-0">
+
+                <div class="group p-10 card-blur rounded-[2.5rem] hover:border-emerald-500/40 transition-all duration-500">
+                    <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-500 mb-6 group-hover:bg-emerald-500 group-hover:text-black transition-all">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.172-1.172a4 4 0 115.656 5.656L15 13.172V17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 uppercase italic text-white">Diseño Web UX</h3>
-                    <p class="text-gray-400 font-light">Webs rápidas y minimalistas que guían al usuario hacia la compra.</p>
+                    <p class="text-gray-400 leading-relaxed font-light">Webs rápidas y minimalistas que guían al usuario hacia la compra de forma orgánica.</p>
                 </div>
-                <div class="group p-10 card-blur rounded-[2.5rem] hover:border-blue-500/40 transition-all">
-                    <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-500 mb-6 group-hover:bg-blue-500 group-hover:text-black transition-all mx-auto md:mx-0">
+
+                <div class="group p-10 card-blur rounded-[2.5rem] hover:border-blue-500/40 transition-all duration-500">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-500 mb-6 group-hover:bg-blue-500 group-hover:text-black transition-all">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 uppercase italic text-white">Sistemas Cloud</h3>
-                    <p class="text-gray-400 font-light">Infraestructura robusta para máxima velocidad y control total.</p>
+                    <p class="text-gray-400 leading-relaxed font-light">Infraestructura robusta en VPS propios para máxima velocidad y control total.</p>
                 </div>
             </div>
         </div>
@@ -146,8 +163,8 @@
 
 <footer class="py-20 bg-black border-t border-white/5">
     <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
-        <span class="text-2xl font-black uppercase italic tracking-tighter text-white">Enrique<span class="text-cyan-500 font-light">Ruiz</span></span>
-        <p class="text-[10px] text-gray-600 mt-4 font-bold uppercase tracking-[0.3em]">© 2026 Enrique Ruiz - .Cloud Infrastructure</p>
+        <span class="text-2xl font-black uppercase italic tracking-tighter text-white">Enrique<span class="text-cyan-500">Ruiz</span></span>
+        <p class="text-[10px] text-gray-600 mt-2 font-bold uppercase tracking-[0.3em]">© 2026 Enrique Ruiz - .Cloud Infrastructure</p>
     </div>
 </footer>
 
@@ -156,14 +173,17 @@
 async function cargarProyectos() {
     try {
         const res = await fetch('proyectos.json?v=' + Date.now());
+        if (!res.ok) throw new Error('No se encontró proyectos.json');
         const datos = await res.json();
         const contenedor = document.getElementById('projects-container');
         contenedor.innerHTML = '';
+
         datos.forEach(p => {
             let tagsHtml = '';
             if (p.Tags) {
                 tagsHtml = String(p.Tags).split(',').map(t => `<span class="tech-tag">${t.trim()}</span>`).join('');
             }
+
             contenedor.innerHTML += `
                 <article class="bg-[#111] rounded-[24px] overflow-hidden border border-white/5 hover:border-cyan-500/40 transition-all group">
                     <div class="relative h-48 overflow-hidden">
@@ -177,10 +197,10 @@ async function cargarProyectos() {
                     </div>
                 </article>`;
         });
-    } catch (e) { console.error(e); }
+    } catch (e) { console.error("Error en proyectos:", e); }
 }
 
-// 2. VIDEO SCROLL MEJORADO PARA MÓVILES
+// 2. VIDEO SCROLL (SOLO ACTIVO EN ESCRITORIO)
 const video = document.getElementById('v0');
 const heroSection = document.getElementById('home');
 const heroText = document.getElementById('hero-text');
@@ -189,39 +209,36 @@ let targetTime = 0;
 let actualTime = 0;
 
 function updateVideoSmooth() {
-    if (video.duration) {
+    // Solo ejecutamos la lógica si estamos en pantalla de escritorio (>768px)
+    if (window.innerWidth >= 768 && video && video.duration) {
         const rect = heroSection.getBoundingClientRect();
-        const winH = window.innerHeight;
-        
-        // Progreso basado en la posición de la sección
-        let progress = -rect.top / (rect.height - winH);
+        let progress = -rect.top / (rect.height - window.innerHeight);
         progress = Math.max(0, Math.min(progress, 1));
         
         targetTime = video.duration * progress;
-        
-        // En móviles usamos una interpolación un poco más rápida para compensar el scroll táctil
-        const lerpFactor = window.innerWidth < 768 ? 0.2 : 0.1;
-        actualTime += (targetTime - actualTime) * lerpFactor;
-        
-        // Solo actualizamos si el cambio es significativo para ahorrar CPU
-        if (Math.abs(actualTime - video.currentTime) > 0.01) {
-            video.currentTime = actualTime;
-        }
+        actualTime += (targetTime - actualTime) * 0.12; 
+        video.currentTime = actualTime;
 
-        // TEXTO: Desaparece al 50% del scroll para no dejar "negro" vacío
-        const textOpacity = 1 - (progress * 2.5);
+        // Efecto visual en el texto
+        const textOpacity = 1 - (progress * 2); 
         heroText.style.opacity = Math.max(0, textOpacity);
-        heroText.style.transform = `translateY(${-progress * 100}px)`;
+        heroText.style.transform = `translateY(-${progress * 80}px)`;
+    } else {
+        // En móvil reseteamos estilos por si acaso
+        heroText.style.opacity = 1;
+        heroText.style.transform = 'none';
     }
     requestAnimationFrame(updateVideoSmooth);
 }
 
-// Forzar el inicio del vídeo incluso si el scroll no se mueve
-video.addEventListener('loadedmetadata', () => {
-    video.play().then(() => video.pause()); // "Despierta" el vídeo en móviles
+// Iniciar procesos
+if (video) {
+    video.addEventListener('loadedmetadata', () => {
+        requestAnimationFrame(updateVideoSmooth);
+    });
+} else {
     requestAnimationFrame(updateVideoSmooth);
-});
-
+}
 cargarProyectos();
 </script>
 
