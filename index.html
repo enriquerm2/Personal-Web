@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta name="description" content="Enrique Ruiz - Especialista en Automatizaciones con n8n/Make y Diseño Web UI/UX.">
-    <meta name="author" content="Enrique Ruiz">
+    <meta name="author" content="Enrique Ruiz Mora">
     <title>Enrique Ruiz | Automatizaciones Inteligentes & Diseño Web</title>
     
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -107,7 +107,7 @@
         </div>
     </section>
 
-    <section id="portfolio" class="portfolio-section">
+    <section id="portfolio" class="portfolio-section bg-[#0a0a0a]">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-16">
                 <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">Soluciones <span class="text-cyan-500 text-shadow-glow">Desplegadas</span></h2>
@@ -193,7 +193,6 @@ async function cargarProyectos() {
         }
 
         datos.forEach(p => {
-            // EL ESCUDO: Forzamos a que los tags sean texto siempre
             let tagsHtml = '';
             if (p.Tags) {
                 tagsHtml = String(p.Tags).split(',').map(t => `<span class="tech-tag">${t.trim()}</span>`).join('');
