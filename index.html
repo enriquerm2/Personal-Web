@@ -13,7 +13,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; }
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; margin: 0; }
         .hero-overlay { background: radial-gradient(circle at center, transparent 0%, #0a0a0a 100%); }
         
         @keyframes gradient {
@@ -85,14 +85,12 @@
 </header>
 
 <main>
-    <section id="home" class="relative h-[200vh] bg-black">
+    <section id="home" class="relative h-[180vh] bg-black">
         <div class="sticky top-0 left-0 w-full h-screen overflow-hidden">
             <video 
                 id="v0" 
-                tabindex="0" 
-                autobuffer="autobuffer" 
                 preload="auto" 
-                class="w-full h-full object-cover opacity-40"
+                class="w-full h-full object-cover opacity-50"
                 muted
                 playsinline
             >
@@ -100,9 +98,9 @@
             </video>
             
             <div class="absolute inset-0 flex items-center justify-center hero-overlay">
-                <div id="hero-text" class="relative z-10 max-w-5xl mx-auto px-6 text-center transition-opacity duration-300">
+                <div id="hero-text" class="relative z-10 max-w-5xl mx-auto px-6 text-center">
                     <span class="inline-block px-4 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6 bg-cyan-500/5">Proyectos Abiertos 2026</span>
-                    <h1 class="text-5xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter text-white text-shadow-glow">
+                    <h1 class="text-5xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter text-white">
                         Diseño webs que <br>
                         <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent animate-gradient">trabajan por ti.</span>
                     </h1>
@@ -218,7 +216,7 @@ async function cargarProyectos() {
     } catch (e) { console.error(e); }
 }
 
-// 2. VIDEO SCROLL DINÁMICO (Ajustado para 8 segundos y 300vh)
+// 2. VIDEO SCROLL DINÁMICO (Optimizado para 8s de video en 180vh)
 const video = document.getElementById('v0');
 const heroSection = document.getElementById('home');
 const heroText = document.getElementById('hero-text');
@@ -228,19 +226,22 @@ function updateVideo() {
         const scrollY = window.scrollY;
         const sectionTop = heroSection.offsetTop;
         const sectionHeight = heroSection.offsetHeight - window.innerHeight;
-        let progress = (scrollY - sectionTop) / sectionHeight;
+        
+        // Calculamos el progreso (de 0 a 1)
+        let progress = scrollY / sectionHeight;
         progress = Math.max(0, Math.min(progress, 1));
         
-        // Sincronización del tiempo del video
+        // Mapeamos el progreso al tiempo del video (8 segundos)
         video.currentTime = video.duration * progress;
         
-        // El texto desaparece suavemente al bajar
-        const textOpacity = 1 - (progress * 2.5);
+        // El texto se desvanece rápido para dejar ver el video
+        const textOpacity = 1 - (progress * 3); 
         heroText.style.opacity = Math.max(0, textOpacity);
     }
     requestAnimationFrame(updateVideo);
 }
 
+// Iniciar
 requestAnimationFrame(updateVideo);
 cargarProyectos();
 </script>
