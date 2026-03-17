@@ -10,32 +10,34 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; margin: 0; overflow-x: hidden; }
         
-        /* Capas del Hero */
-        #sticky-container { background-color: #000; }
-        
+        /* Contenedor principal del Hero */
+        #home { background-color: #000; }
+
+        /* El video: centrado y por debajo de todo el texto */
         #v0 { 
             position: absolute;
             top: 50%; left: 50%;
-            transform: translate(-50%, -50%); /* Centrado perfecto */
+            transform: translate(-50%, -50%);
             min-width: 100%; min-height: 100%;
             width: auto; height: auto;
             object-fit: cover;
             filter: brightness(0.4);
-            z-index: 5; /* Por encima del fondo negro */
+            z-index: 1;
+            display: block;
         }
 
+        /* Capa de degradado para que el texto se lea bien */
         .hero-overlay { 
-            background: radial-gradient(circle at center, transparent 10%, #0a0a0a 100%); 
-            z-index: 10; 
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 20%, #0a0a0a 100%); 
+            z-index: 5; 
         }
 
-        #hero-text { z-index: 20; }
-
-        /* Estética de tarjetas */
-        .card-blur {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        /* Texto por encima de todo */
+        #hero-content-wrapper { 
+            position: relative;
+            z-index: 10; 
         }
 
         .tech-tag {
@@ -45,6 +47,12 @@
             border-radius: 99px;
             font-size: 10px;
             font-weight: 700;
+        }
+
+        .card-blur {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
@@ -67,24 +75,32 @@
 </header>
 
 <main>
-    <section id="home" class="relative h-screen md:h-[400vh] bg-black">
-        <div id="sticky-container" class="sticky top-0 w-full h-screen overflow-hidden">
+    <section id="home" class="relative h-screen md:h-[400vh]">
+        <div class="sticky top-0 w-full h-screen overflow-hidden">
             
-            <video id="v0" preload="auto" muted playsinline class="hidden md:block">
-                <source type="video/mp4" src="assets/videos/hero-scroll.mp4">
+            <video 
+                id="v0" 
+                preload="auto" 
+                muted 
+                playsinline 
+                autoplay
+                loop
+                class="hidden md:block"
+            >
+                <source src="assets/videos/hero-scroll.mp4" type="video/mp4">
             </video>
             
             <div class="absolute inset-0 bg-cover bg-center md:hidden" style="background-image: url('assets/images/hero-bg.jpg');"></div>
             
-            <div class="absolute inset-0 flex items-center justify-center hero-overlay pointer-events-none">
-                <div id="hero-text" class="max-w-5xl mx-auto px-6 text-center pointer-events-auto">
+            <div class="hero-overlay flex items-center justify-center">
+                <div id="hero-content-wrapper" class="max-w-5xl mx-auto px-6 text-center">
                     <span class="inline-block px-4 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6 bg-cyan-500/5">Proyectos Abiertos 2026</span>
-                    <h1 class="text-5xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter text-white">
+                    <h1 id="hero-title" class="text-5xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter text-white">
                         Diseño webs que <br>
                         <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent">trabajan por ti.</span>
                     </h1>
                     <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
-                        Automatizaciones con <span class="text-white font-bold">n8n</span> para escalar tu negocio.
+                        Automatizaciones inteligentes con <span class="text-white font-bold">n8n</span> para escalar tu negocio.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
                         <a class="px-10 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 transition-all uppercase tracking-tighter" href="#contacto">Empezar Proyecto</a>
@@ -131,7 +147,7 @@
         </div>
     </section>
 
-    <section class="py-32 bg-[#0a0a0a]" id="contacto">
+    <section class="py-32 bg-[#0a0a0a] relative z-20" id="contacto">
         <div class="max-w-4xl mx-auto px-6">
             <div class="bg-gradient-to-br from-[#111] to-black p-10 md:p-20 rounded-[3rem] border border-white/10 text-center shadow-2xl">
                 <h2 class="text-4xl md:text-7xl font-black mb-8 uppercase tracking-tighter italic text-white">¿Escalamos tu <br><span class="text-cyan-500">negocio?</span></h2>
@@ -154,61 +170,67 @@
 </footer>
 
 <script>
-// 1. CARGA DE PROYECTOS
+// 1. PROYECTOS
 async function cargarProyectos() {
     try {
         const res = await fetch('proyectos.json?v=' + Date.now());
         const datos = await res.json();
         const contenedor = document.getElementById('projects-container');
-        contenedor.innerHTML = '';
-        datos.forEach(p => {
-            let tagsHtml = p.Tags ? String(p.Tags).split(',').map(t => `<span class="tech-tag">${t.trim()}</span>`).join('') : '';
-            contenedor.innerHTML += `
-                <article class="bg-[#111] rounded-[24px] overflow-hidden border border-white/5 hover:border-cyan-500/40 transition-all group">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="${p.Imagen || ''}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                        <div class="absolute top-3 left-3 flex gap-1 flex-wrap">${tagsHtml}</div>
+        contenedor.innerHTML = datos.map(p => `
+            <article class="bg-[#111] rounded-[24px] overflow-hidden border border-white/5 hover:border-cyan-500/40 transition-all group">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="${p.Imagen || ''}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div class="absolute top-3 left-3 flex gap-1 flex-wrap">
+                        ${p.Tags ? String(p.Tags).split(',').map(t => `<span class="tech-tag">${t.trim()}</span>`).join('') : ''}
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-white mb-2 uppercase tracking-tight">${p.Titulo || ''}</h3>
-                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">${p.Descripción || ''}</p>
-                        <a href="${p.Link || '#'}" target="_blank" class="text-cyan-400 text-xs font-black uppercase hover:text-white transition-colors">Ver Proyecto →</a>
-                    </div>
-                </article>`;
-        });
-    } catch (e) { console.error(e); }
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-white mb-2 uppercase tracking-tight">${p.Titulo || ''}</h3>
+                    <p class="text-gray-400 text-sm mb-4 line-clamp-2">${p.Descripción || ''}</p>
+                    <a href="${p.Link || '#'}" target="_blank" class="text-cyan-400 text-xs font-black uppercase hover:text-white transition-colors">Ver Proyecto →</a>
+                </div>
+            </article>`).join('');
+    } catch (e) { console.error("Error cargando proyectos:", e); }
 }
 
-// 2. VIDEO SCROLL SINCRONIZADO
+// 2. VIDEO SCROLL DINÁMICO
 const video = document.getElementById('v0');
 const hero = document.getElementById('home');
-const text = document.getElementById('hero-text');
+const content = document.getElementById('hero-content-wrapper');
 
-function updateVideo() {
-    const rect = hero.getBoundingClientRect();
-    const scrollPos = -rect.top;
-    const scrollMax = rect.height - window.innerHeight;
-    
-    if (window.innerWidth >= 768 && scrollPos >= 0 && scrollPos <= scrollMax) {
-        if (video.duration) {
-            let progress = scrollPos / scrollMax;
-            video.currentTime = video.duration * progress;
-            
-            // Texto: opacidad y movimiento
-            text.style.opacity = 1 - (progress * 2.5);
-            text.style.transform = `translateY(${-progress * 60}px)`;
-        }
+function syncVideo() {
+    if (window.innerWidth >= 768 && video.duration) {
+        const rect = hero.getBoundingClientRect();
+        const scrollMax = rect.height - window.innerHeight;
+        let progress = -rect.top / scrollMax;
+        progress = Math.max(0, Math.min(progress, 1));
+
+        // Sincronización directa
+        video.currentTime = video.duration * progress;
+
+        // Efectos de texto
+        content.style.opacity = 1 - (progress * 2.5);
+        content.style.transform = `translateY(${-progress * 100}px)`;
     }
-    requestAnimationFrame(updateVideo);
+    requestAnimationFrame(syncVideo);
 }
 
-// Inicialización
+// "WAKE UP" DEL VIDEO: Forzamos al navegador a cargar el primer frame
+function initVideo() {
+    if (window.innerWidth >= 768) {
+        video.play().then(() => {
+            video.pause(); // Lo arrancamos y paramos para que cargue en memoria
+            requestAnimationFrame(syncVideo);
+        }).catch(err => {
+            console.log("Esperando interacción para el video...");
+            requestAnimationFrame(syncVideo);
+        });
+    }
+}
+
 window.onload = () => {
     cargarProyectos();
-    if (window.innerWidth >= 768) {
-        video.load();
-        requestAnimationFrame(updateVideo);
-    }
+    initVideo();
 };
 </script>
 
